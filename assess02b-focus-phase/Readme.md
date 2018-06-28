@@ -2,7 +2,7 @@
 
 Congratulations! You've received an interview call from FooBar - the world's leading software company. They went through your GitHub, LinkedIn and personal website and were impressed. 
 
-As a part of their interview process, they would like you to submit an assignment followed by an interview. You have been given 6 hours to solve the assignment. Interviews will be held post from 5 pm onwards. 
+As a part of their interview process, they would like you to submit an assignment followed by an interview. You have been given 6 hours to solve the assignment. Interviews will be held post submissions. 
 
 Here are some guidelines for the assessment: 
 - Write clear and concise code 
