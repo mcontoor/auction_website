@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose');
+const Routes = require('./routes/app')
 
 const app = express();
 
@@ -9,9 +10,7 @@ mongoose.connect('mongodb://localhost:27017/auction', {useNewUrlParser : true})
 .then(() => console.log('database connected'))
 .catch(err => console.log(err))
 
-app.use('/', (req,res) =>
-    res.send('Server running')
-)
+app.use('/', Routes)
 
 
 app.listen(PORT, function() {
