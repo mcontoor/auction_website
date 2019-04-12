@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 var itemSchema = new Schema ({
     owner: {
-        type: mongoose.Schema.ObjectID,
+        type: Schema.Types.ObjectId,
         ref: 'User',
         required: true
     },
@@ -15,10 +15,9 @@ var itemSchema = new Schema ({
     description : {
         type : String,
     },
-    data: {
-        type: Buffer,
-        contentType: String
-    }
+    startingbid : Number,
+    data: Buffer,
+    contentType: String,
 })
 
 var Item = module.exports = mongoose.model('Item', itemSchema);

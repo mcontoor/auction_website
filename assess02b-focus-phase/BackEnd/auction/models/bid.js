@@ -2,12 +2,12 @@ const Schema = require('mongoose').Schema;
 
 var bidSchema = new Schema ({
     bidder: {
-        id : mongoose.Schema.ObjectID,
+        id : Schema.Types.ObjectId,
         ref: 'User',
         required: true
     },
     item: {
-        id: mongoose.Schema.ObjectID,
+        id: Schema.Types.ObjectId,
         ref: 'Item',
         required: true
     },
