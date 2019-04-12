@@ -18,7 +18,7 @@ var userSchema = new Schema ({
     }
 })
 
-module.exports = mongoose.model('User', userSchema);
+var User = module.exports = mongoose.model('User', userSchema);
 
 module.exports.createUser = function(user, callback) {
     bcrypt.genSalt(10, function(err, salt) {
@@ -29,5 +29,17 @@ module.exports.createUser = function(user, callback) {
             user.password = hash;
             user.save(callback)
         })
+    })
+}
+
+module.exports.getUserbyUsername = function(username, callback) {
+    var query = {username: username};
+    User.findOne(query, callback);
+}
+
+module.exports.comparePassword = function(candidatePassord, hash, callback) {
+    bcrypt.compare(candidatePassord, hash, function(err, isMatch) {
+        if (err) throw err;
+        callback(null, isMatch);
     })
 }
