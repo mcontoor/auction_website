@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/register', (req, res)=> {
-    res.sendFile(path.resolve('add-user.html'))
+    res.sendFile(path.resolve('register.html'))
 })
 
 router.post('/register', (req, res) => {
@@ -17,9 +17,24 @@ router.post('/register', (req, res) => {
     user.password = req.body.password,
     user.email = req.body.email
 
-    user.save()
-    .then(() => console.log('new user created'), res.send(`${user.username} registered. Login to continue`))
-    .catch(err => console.log(err))
-})
+    req.checkBody('username', 'username is required').notEmpty();
+    req.checkBody('password', 'password is required').notEmpty();
+    req.checkBody('email', 'email is invalid').notEmpty();
+    req.checkBody('email', 'email is invalid').isEmail();
+
+    var errors = req.validationErrors();
+    if (errors) {
+        console.log('errors');
+    } else {
+        console.log('no errors')
+    }
+
+    User.createUser(user, function(err, user) {
+        if (err) throw err;
+        console.log(user);
+    })
+    res.send(`User ${user} registered. Login to continue`)
+});
+
 
 module.exports = router;

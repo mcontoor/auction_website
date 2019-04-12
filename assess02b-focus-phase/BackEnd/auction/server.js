@@ -2,12 +2,14 @@ const express = require('express')
 const mongoose = require('mongoose');
 const Routes = require('./routes/app')
 const bodyParser = require('body-parser');
+var expressValidator = require('express-validator');
 
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(expressValidator());
 
 const PORT = process.env.PORT || 5000;
 
