@@ -36,6 +36,19 @@ router.post('/auction', ensureAuthenticated, (req, res) => {
 
 });
 
+router.get('/item', ensureAuthenticated, (req, res) => {
+    Item.find({owner : req.user.id}, function(err, items) {
+        var itemList = {};
+
+        items.forEach(function(item) {
+            itemList[item._id] = item;
+        });
+        console.log(itemList)
+        res.send(itemList)
+    })
+})
+
+
 
 
 module.exports = router;
