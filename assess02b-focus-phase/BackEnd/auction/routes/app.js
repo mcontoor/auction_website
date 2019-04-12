@@ -3,6 +3,7 @@ const User = require('../models/users')
 var path = require('path');
 var passport = require('passport');
 var LocalStrategy = require('passport-local')
+var Item = require('../models/item')
 
 router.get('/', (req, res) => {
     // res.sendStatus(200);

@@ -6,7 +6,7 @@ var expressValidator = require('express-validator');
 var session = require('express-session');
 var passport = require('passport')
 var cookieParser = require('cookie-parser')
-var bidRoutes = require('./routes/bidroutes')
+var auctionRoutes = require('./routes/auctionroutes')
 
 const app = express();
 app.use(bodyParser.json());
@@ -34,7 +34,7 @@ mongoose.connect('mongodb://localhost:27017/auction', {
 .catch(err => console.log(err))
   
 app.use('/', Routes);
-app.use('/user', bidRoutes)
+app.use('/user', auctionRoutes)
 
 
 app.listen(PORT, function() {
