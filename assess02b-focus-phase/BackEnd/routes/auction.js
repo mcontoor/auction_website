@@ -1,0 +1,36 @@
+const router = require('express').Router();
+const multer = require('multer');
+const faker = require('faker');
+const fs = require('fs');
+
+function ensureAuthenticated(req, res, next) {
+    if(req.isAuthenticated()) {
+        return next();
+    } else{
+        res.send('Redirect to login route')
+    }
+}
+
+router.get('/', ensureAuthenticated, (req, res) => {
+    res.send('User dashboard, user can choose to /bid route to bid, or /auction to place item');
+})
+
+router.get('/auction', ensureAuthenticated, (req, res) => {
+    res.send('Upload item for auctions on /auction route')
+})
+
+router.post('/auction', ensureAuthenticated, (req, res) => {
+    var item = new item()
+    item.owner = req.user.id,
+    item.title = req.query.title,
+    item.description = req.query.description,
+    item.startingbid = req.query.startingbid,
+    item.data = faker.image.image()
+    item.contentType = 'image'
+
+    item.save()
+    .then(() => console.log('item can now be displayed for auction'), res.send('${item.title} can now be displayed'))
+    .catch(err => console.log(err));
+});
+
+module.exports = router;
